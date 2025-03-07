@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Digital Services - Your Platform for Innovation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/css/uikit.min.css" />
+    <style>
+        /* === Custom CSS (Styling Enhancements inspired by DigitalOcean) === */
+        body {
+            font-family: 'Satoshi-Regular', 'Arial', sans-serif; /* Professional font */
+            color: #4a5568; /* Darker, more professional text color */
+            background-color: #ffffff; /* Clean white background */
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased; /* Better font rendering for modern browsers */
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+
+        /* Dark Mode Overrides */
+        .dark-mode body {
+            color: #d2d6dc; /* Light gray for dark mode text */
+            background-color: #1a202c; /* Dark background, typical of modern dark modes */
+        }
+
+        /* Navbar Styles */
+        .uk-navbar-container {
+            background-color: #ffffff; /* Light navbar background */
+            border-bottom: 1px solid #e2e8f0; /* Subtle border for separation */
+            position: relative; /* For loading dots positioning */
+        }
+
+        .dark-mode .uk-navbar-container {
+            background-color: #2d3748; /* Darker navbar for dark mode */
+            border-bottom-color: #4a5568;
+        }
+
+        .uk-navbar-left .uk-logo {
+            position: relative; /* for shape animation positioning */
+            overflow: hidden; /* clip shape overflow */
+            display: flex;
+            align-items: center;
+        }
+
+        .uk-navbar-nav > li > a {
+            color: #4a5568; /* Navbar link color */
+            font-weight: 500; /* Slightly bolder for emphasis */
+            transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+        }
+
+        .uk-navbar-nav > li > a:hover,
+        .uk-navbar-nav > li > a:focus {
+            color: #007bff; /* Primary color hover effect, consistent with DigitalOcean */
+        }
+
+        .dark-mode .uk-navbar-nav > li > a {
+            color: #d2d6dc; /* Light color for dark mode navbar links */
+        }
+        .dark-mode .uk-navbar-nav > li > a:hover,
+        .dark-mode .uk-navbar-nav > li > a:focus {
+            color: #5bc0de; /* Accent color for dark mode hover */
+        }
+
+
+        /* Button Styles - Streamlined and Professional */
+        .uk-button-default {
+            background-color: #f7fafc; /* Very light gray button background */
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.25rem; /* Slight border radius for modern look */
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .uk-button-default:hover,
+        .uk-button-default:focus {
+            background-color: #edf2f7; /* Slightly darker on hover */
+            color: #2d3748;
+            border-color: #cbd5e0;
+            transform: scale(1.03); /* Subtle grow on hover */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow on hover */
+        }
+
+        .dark-mode .uk-button-default {
+            background-color: #2d3748;
+            color: #d2d6dc;
+            border-color: #4a5568;
+        }
+        .dark-mode .uk-button-default:hover,
+        .dark-mode .uk-button-default:focus {
+            background-color: #4a5568;
+            color: #f7fafc;
+            border-color: #718096;
+        }
+
+
+        .uk-button-primary {
+            background-color: #007bff; /* DigitalOcean primary blue */
+            color: #ffffff;
+            border: none;
+            border-radius: 0.25rem;
+            font-weight: 600; /* Bolder for primary buttons */
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out; /* Added transform transition */
+            box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5); /* For pulse effect */
+        }
+
+        .uk-button-primary:hover,
+        .uk-button-primary:focus {
+            background-color: #0056b3; /* Darker shade on hover */
+            transform: scale(1.05); /* Grow on hover */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Pulse effect on hover */
+        }
+
+        .uk-button-primary:focus {
+            outline: none; /* Remove default focus outline */
+        }
+
+
+        .dark-mode .uk-button-primary {
+            background-color: #5bc0de; /* Accent color for primary in dark mode */
+        }
+        .dark-mode .uk-button-primary:hover,
+        .dark-mode .uk-button-primary:focus {
+            background-color: #46a5c5;
+        }
+
+
+        /* Dropdown & Card - Consistent Styling */
+        .uk-dropdown, .uk-card-default {
+            background-color: #ffffff;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.25rem;
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); /* Subtle shadow */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .uk-dropdown:hover, .uk-card-default:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,.15), 0 1px 2px 0 rgba(0,0,0,.06); /* Slightly stronger shadow on hover */
+        }
+
+
+        .dark-mode .uk-dropdown, .dark-mode .uk-card-default {
+            background-color: #2d3748;
+            color: #d2d6dc;
+            border-color: #4a5568;
+            box-shadow: 0 1px 3px 0 rgba(255,255,255,.1), 0 1px 2px 0 rgba(255,255,255,.06);
+        }
+        .dark-mode .uk-dropdown:hover, .dark-mode .uk-card-default:hover {
+            box-shadow: 0 5px 15px rgba(255,255,255,.15), 0 1px 2px 0 rgba(255,255,255,.06);
+        }
+
+        /* Muted Section & Footer - Soft Backgrounds */
+        .uk-section-muted {
+            background-color: #f7fafc; /* Very light gray for muted sections */
+        }
+
+        .dark-mode .uk-section-muted {
+            background-color: #242d3b; /* Darker muted background */
+        }
+
+        .uk-footer {
+            background-color: #f7fafc;
+            color: #718096; /* Muted footer text */
+            border-top: 1px solid #e2e8f0; /* Top border to separate from content */
+        }
+        .dark-mode .uk-footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+            border-top-color: #4a5568;
+        }
+
+
+        /* Hero Section - Emphasized Typography */
+        .hero-section {
+            padding: 120px 0; /* Increased padding for a more spacious hero */
+            text-align: center;
+            position: relative; /* for animated title text */
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem; /* Larger hero heading */
+            margin-bottom: 25px;
+            color: #2d3748; /* Darker heading color */
+            font-weight: 700; /* Bold heading */
+            letter-spacing: -0.025em; /* Tighten letter spacing for headings */
+            display: inline-block; /* For hover animation to work correctly */
+            transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        }
+
+        .hero-section h1:hover {
+            color: #007bff; /* Primary color on hover */
+            transform: scale(1.05); /* Slightly scale up on hover */
+            cursor: pointer; /* Indicate hover effect */
+        }
+
+
+        .dark-mode .hero-section h1 {
+            color: #ffffff; /* White heading in dark mode */
+        }
+         .dark-mode .hero-section h1:hover {
+            color: #5bc0de; /* Accent color on hover in dark mode */
+        }
+
+        .hero-section p {
+            font-size: 1.25rem; /* Slightly larger paragraph text */
+            color: #718096;
+            margin-bottom: 40px; /* Increased bottom margin */
+            max-width: 700px; /* Limit width for better readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dark-mode .hero-section p {
+            color: #a0aec0;
+        }
+
+
+        /* Feature Section - Clear and Consistent */
+        .feature-section {
+            padding: 80px 0; /* Increased padding */
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 35px; /* More padding for feature items */
+            transition: transform 0.3s ease-in-out; /* For growing/shrinking effect */
+        }
+
+        .feature-item:hover {
+            transform: scale(1.05); /* Grow on hover */
+        }
+
+
+        .feature-item i {
+            font-size: 3.5rem; /* Larger icons */
+            color: #007bff; /* Primary icon color */
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.9; /* Slightly muted icon */
+            transition: color 0.3s ease; /* Icon color transition */
+        }
+
+        .feature-item:hover i {
+            color: #0056b3; /* Darker shade on hover */
+        }
+
+
+        .feature-item h3 {
+            font-size: 1.75rem; /* Larger feature titles */
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+            transition: color 0.3s ease; /* Title color transition */
+        }
+        .dark-mode .feature-item h3 {
+            color: #ffffff;
+        }
+         .feature-item:hover h3 {
+            color: #007bff; /* Primary color on hover for title */
+        }
+
+
+        .feature-item p {
+            color: #718096;
+            line-height: 1.6;
+            transition: color 0.3s ease; /* Paragraph color transition */
+        }
+        .dark-mode .feature-item p {
+            color: #a0aec0;
+        }
+        .feature-item:hover p {
+            color: #d2d6dc; /* Lighter color on hover for paragraph */
+        }
+
+
+        /* Typography adjustments for better readability across the site */
+        h2, h3 {
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+        }
+        p {
+            letter-spacing: 0.01em; /* slight letter spacing for body text */
+        }
+
+        /* === Loading Dots Animation === */
+        .loading-dots {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #718096;
+            border-radius: 50%;
+            margin-right: 5px;
+            opacity: 0;
+            animation: pulseDots 1.5s infinite ease-in-out;
+        }
+
+        .dark-mode .dot {
+            background-color: #a0aec0;
+        }
+
+
+        .dot:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes pulseDots {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* === Rotating Shapes Animation === */
+        .rotating-shapes {
+            position: absolute;
+            left: -10px; /* Adjust as needed to position behind logo text */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px; /* Adjust size as needed */
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: rotateShapes 6s infinite linear, colorChange 6s infinite linear;
+        }
+
+        .shape-circle { background-color: #007bff; }
+        .shape-square { background-color: #5bc0de; border-radius: 0; opacity: 0.6; animation-delay: -2s;}
+        .shape-triangle {
+            background-color: #a0aec0;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 0; opacity: 0.5; animation-delay: -4s;
+        }
+
+
+        @keyframes rotateShapes {
+            0% { transform: rotate(0deg) scale(0.8); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(0.8); }
+        }
+
+        @keyframes colorChange {
+            0%, 100% { background-color: #007bff; }
+            33% { background-color: #5bc0de; }
+            66% { background-color: #a0aec0; }
+        }
+
+
+    </style>
+
+    <style>
+        @font-face {
+            font-family: 'Satoshi-Regular';
+            src: url('fonts/Satoshi-Regular.woff2') format('woff2'), /* Path to your font file - replace with actual path or CDN link */
+                 url('fonts/Satoshi-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; /* Improves performance by not blocking rendering */
+        }
+        /* Add other font weights/styles if needed, e.g., Satoshi-Bold, Satoshi-Italic */
+    </style>
+
+
+</head>
+<body class="uk-background-default">
+
+<div uk-sticky="animation: uk-animation-slide-top; bottom: #bottom">
+    <nav class="uk-navbar-container">
+        <div class="uk-container">
+            <div uk-navbar>
+
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-item uk-logo" href="/">
+                        <div class="rotating-shapes">
+                            <div class="shape shape-circle"></div>
+                            <div class="shape shape-square"></div>
+                            <div class="shape shape-triangle"></div>
+                        </div>
+                        Digital Services
+                        <span class="loading-dots">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li>
+                            <button id="dark-mode-toggle" class="uk-button uk-button-default">Dark Mode</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</div>
+
+<section class="hero-section uk-section uk-section-large">
+    <div class="uk-container">
+        <h1 class="uk-heading-medium">Empowering Your Digital Transformation</h1>
+        <p>Unlock the full potential of your business with our cutting-edge digital services. We provide scalable, reliable, and innovative solutions tailored to your unique needs. From cloud infrastructure to custom applications, we've got you covered.</p>
+        <div>
+            <button class="uk-button uk-button-primary uk-button-large">Explore Solutions</button>
+            <div class="uk-inline">
+                <button class="uk-button uk-button-default uk-button-large" type="button">
+                    Learn More <span uk-icon="triangle-down"></span>
+                </button>
+                <div uk-dropdown="pos: bottom-center">
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li><a href="/features/cloud-hosting">Cloud Hosting</a></li>
+                        <li><a href="/features/managed-services">Managed Services</a></li>
+                        <li><a href="/features/web-development">Web Development</a></li>
+                        <li class="uk-nav-divider"></li>
+                        <li><a href="/features">All Services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-section uk-section">
+    <div class="uk-container">
+        <div class="uk-grid-match uk-child-width-1-3@m uk-grid-small" uk-grid>
+            <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <div class="feature-item">
+                        <span uk-icon="icon: cloud-upload; ratio: 2"></span>
+                        <h3>Scalable Infrastructure</h3>
+                        <p>Built on robust and scalable cloud infrastructure, ensuring your applications are always available and performing optimally.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <div class="feature-item">
+                        <span uk-icon="icon: server; ratio: 2"></span>
+                        <h3>Reliable Performance</h3>
+                        <p>Experience consistent and high-speed performance with our optimized servers and global network, designed for maximum uptime.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <div class="feature-item">
+                        <span uk-icon="icon: cog; ratio: 2"></span>
+                        <h3>Managed Solutions</h3>
+                        <p>Focus on your business while we handle the technical complexities. Our managed services provide expert support and maintenance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="uk-section uk-section-muted uk-padding-large">
+    <div class="uk-container uk-text-center">
+        <h2 class="uk-heading-medium">Ready to Elevate Your Digital Presence?</h2>
+        <p>Join leading businesses who trust us to power their digital infrastructure. Start your journey towards innovation and growth today.</p>
+        <button class="uk-button uk-button-primary uk-button-large">Get Started Now</button>
+        <div class="uk-inline">
+            <button class="uk-button uk-button-default uk-button-large" type="button">
+                More Actions <span uk-icon="triangle-down"></span>
+            </button>
+            <div uk-dropdown="pos: bottom-center">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li><a href="/contact/sales">Contact Sales</a></li>
+                    <li><a href="/support">Get Support</a></li>
+                    <li><a href="/resources">Explore Resources</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="/company">About Our Company</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="uk-footer uk-section uk-section-small">
+    <div class="uk-container uk-text-center">
+        <p>&copy; 2024 Digital Services Inc. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.16.3/dist/js/uikit-icons.min.js"></script>
+<script>
+    // === JavaScript (Inline) ===
+    document.addEventListener('DOMContentLoaded', () => {
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const loadingDots = document.querySelector('.loading-dots');
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode); // Store preference
+        }
+
+        // Set initial dark mode state based on localStorage
+        if (localStorage.getItem('dark-mode') === 'true') {
+            body.classList.add('dark-mode');
+        }
+
+        // Event listener for dark mode toggle button
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+
+        // Simulate loading and hide loading dots after 2 seconds (adjust as needed)
+        setTimeout(() => {
+ 
